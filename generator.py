@@ -25,7 +25,7 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=True, max_num_hands=2, min_detection_confidence=0.30)
 
 
-def new_palm_masking(image_path, scale_factor=1.15, conf_threshold=0.5):
+def new_palm_masking(image_path, scale_factor=1.05, conf_threshold=0.5):
 
     # Initialize models with retry mechanism
     yolo_model = initialize_model()
