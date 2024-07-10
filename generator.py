@@ -100,7 +100,7 @@ def new_palm_masking(image_path, scale_factor=1.05, conf_threshold=0.5):
             hand_landmarks_list = detect_hands(cropped_image, x_offset=x1, y_offset=y1)
 
     if not hand_landmarks_list:
-        return "hands not visible", annotated_image
+        raise Exception("Hands not visible")
 
     create_mask(hand_landmarks_list)
 

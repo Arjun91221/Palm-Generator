@@ -71,7 +71,7 @@ async def base64_to_image(base64_image: Base64Image):
         
         return StreamingResponse(open(image_path, "rb"), media_type="image/png")
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Invalid base64 string: {e}")
+        raise HTTPException(status_code=400, detail=f"{e}")
 
 
 @app.post("/generate-palm-mask/")
@@ -92,7 +92,8 @@ async def palm_mask_endpoint(base64_image: Base64Image):
 
         return mask_base64
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Invalid base64 string: {e}")
+        os.remove(image_path)
+        raise HTTPException(status_code=400, detail=f"{e}")
 
 
 @app.post("/change-bg/")
@@ -127,7 +128,7 @@ async def bg_change_endpoint(images: List[Base64Image]):
 
         return changed_bg_base64
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Invalid base64 string: {e}")
+        raise HTTPException(status_code=400, detail=f"{e}")
 
 
 @app.post("/generate-cloth-mask/")
@@ -148,7 +149,7 @@ async def cloth_mask_endpoint(base64_image: Base64Image):
 
         return mask_base64
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Invalid base64 string: {e}")
+        raise HTTPException(status_code=400, detail=f"{e}")
 
 
 @app.post("/perfect-change-bg/")
@@ -183,7 +184,7 @@ async def perfect_bg_change_endpoint(images: List[Base64Image]):
 
         return changed_bg_base64
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Invalid base64 string: {e}")
+        raise HTTPException(status_code=400, detail=f"{e}")
 
 
 if __name__ == "__main__":
